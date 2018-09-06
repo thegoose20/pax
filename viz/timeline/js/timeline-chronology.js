@@ -360,6 +360,14 @@ function callFunction() {
             // Only visualize agreements with the selected countries/entities
             function setAgtCons(d){
               var agmtCon = String(d.Con);
+              // When only 1 country/entity is selected, display the same
+              // agreements for "any" and "all" radio button selections...
+              if (paxCons.length == 1){
+                if ((agmtCon.includes(paxCons[0])) || (paxCons[0].includes(agmtCon))){
+                  return d;
+                }
+              }
+              // otherwise...
               if (paxConRule == "any"){
                 var allCons = JSON.parse(localStorage.getItem("paxConsAll"));
                 if (paxCons.length == allCons.length){
@@ -377,7 +385,6 @@ function callFunction() {
                 for (j = 0; j < paxCons.length; j++){
                   if ((!(agmtCon.includes(paxCons[j]))) || (!(paxCons[j].includes(agmtCon)))){
                     mismatch = true;
-                    // console.log("Mismatched: "+agmtCon);
                   }
                 }
                 if (!mismatch){
