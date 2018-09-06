@@ -1,0 +1,72 @@
+/*
+CSS style for the main page with a grid layout of the iframes for
+each visualization and selecter (7 in total)
+*/
+
+* {
+  shape-rendering: crispEdges;
+}
+html{
+  background-color: #737373; /*c4c4c4;*/
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+  width: 100%;
+  overflow: visible;
+}
+body {
+  height: 100%;
+  width: 100%;
+}
+h1 {
+  font-weight: 900;
+  font-size: 32px;
+  color: silver;
+  pointer-events: none;
+  padding: 0px;
+}
+h4 {
+  font-weight: 900;
+  font-size: 28px;
+  color: silver;
+  pointer-events: none;
+  padding: 0px;
+  margin-top: 6px;
+}
+iframe {
+  border: none;
+}
+
+/*
+Grid Layout
+*/
+.grid-container {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 3fr;
+  grid-template-rows: 1fr min-content;
+
+  grid-template-areas:
+    'years cons codes agts'
+    'years cons codes agts'
+    'years cons codes agts';
+}
+.grid-container > div {
+  color: silver;
+  text-align: left;
+  padding: 10px;
+}
+
+.item-a {
+  grid-area: years;
+}
+.item-b {
+  grid-area: cons;
+}
+.item-c {
+  grid-area: codes;
+}
+.item-d {
+  grid-area: agts;
+}

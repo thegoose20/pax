@@ -1,0 +1,96 @@
+/*
+CSS style for the main page with a grid layout of the iframes for
+each visualization and selectSplitT (7 in total)
+*/
+
+* {
+  shape-rendering: crispEdges;
+}
+html{
+  background-color: #737373; /*c4c4c4;*/
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  margin: 0px;
+  padding: 0px;
+  overflow: visible;
+}
+body {
+  height: 100%;
+}
+h1 {
+  font-weight: 900;
+  font-size: 20px;
+  color: silver;
+  pointer-events: none;
+  padding: 0px;
+}
+h4 {
+  font-weight: 900;
+  font-size: 24px;
+  color: silver;
+  pointer-events: none;
+  padding: 0px;
+  margin-top: 6px;
+}
+/* a.nav {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight:400;
+  font-size: 12px;
+  margin: 8px;
+  cursor: pointer;
+  color: silver;
+}
+a:hover{
+  color: "#ffffff";
+} */
+iframe {
+  border: none;
+}
+
+/*
+Grid Layout
+*/
+.grid-container {
+  display: grid;
+  /* grid-template-columns: auto auto auto auto auto; /*[col0] 10px [col1] 15% [col2] 17% [col3] 10px [endcol];  /*10px 1fr 1fr 1fr 1fr 1fr 1fr 10px;*/ */ */
+  /* grid-template-rows: auto auto auto auto auto auto auto auto auto auto; /*[row0] 10px [row1] 10% [row2] 20% [row3] 70% [endrow]; */ */
+  grid-template-areas:
+    'header header header'
+    'timeline-h timeline-h timeline-h'
+    'timeline-h timeline-h timeline-h'
+    'timeline-h timeline-h timeline-h'
+    'timeline-h timeline-h timeline-h'
+    'timeline-h timeline-h timeline-h'
+    'timeline-h timeline-h timeline-h'
+    'timeline-h timeline-h timeline-h'
+    'selectSplitT selectSplitT selectSplitT'
+    'selectSplitT selectSplitT selectSplitT'
+    'selectSplitT selectSplitT selectSplitT'
+    'selectSplitT selectSplitT selectSplitT';
+    grid-gap: 4px;
+      align-content: stretch;
+      justify-content: stretch;
+}
+.grid-container > div {
+  color: black;
+  text-align: left;
+  padding: 4px;
+}
+
+.item-a {
+  grid-area: header;
+  grid-column: 1 / 4;
+  grid-row: 1 / 2;
+}
+.item-b {
+  grid-area: horizT;
+  grid-column: 1 / 4;
+  grid-row: 2 / 9;
+  min-height: 310px;
+}
+.item-c {
+  margin-top: 30px;
+  grid-area: selectSplitT;
+  grid-column: 1 / 4;
+  grid-row: 9 / 13;
+  min-height: 310px;
+}
