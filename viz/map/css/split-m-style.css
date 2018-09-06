@@ -1,0 +1,77 @@
+/*
+CSS style for the main page with a grid layout of the iframes for
+each visualization and selectSplitT (7 in total)
+*/
+
+* {
+  shape-rendering: crispEdges;
+}
+html{
+  background-color: #737373; /*c4c4c4;*/
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  margin: 0px;
+  padding: 0px;
+  overflow: visible;
+}
+body {
+  height: 100%;
+}
+h1 {
+  font-weight: 900;
+  font-size: 20px;
+  color: white;
+  pointer-events: none;
+  padding-left: 10px;
+}
+h4 {
+  font-weight: 900;
+  font-size: 24px;
+  color: white;
+  pointer-events: none;
+  padding-left: 10px;
+  padding-top: 10px;
+  margin-top: 0px;
+}
+
+iframe {
+  border: none;
+}
+
+/*
+Grid Layout
+*/
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 20fr 3fr;
+
+  grid-template-areas:
+    'header header header'
+    'map map map'
+    'selectSplitT selectSplitT selectSplitT';
+    grid-gap: 4px;
+}
+.grid-container > div {
+  color: black;
+  text-align: left;
+  padding: 4px;
+}
+
+.item-a {
+  grid-area: header;
+  /* grid-column: 1 / 4;
+  grid-row: 1 / 2; */
+}
+.item-b {
+  grid-area: map;
+  /* grid-column: 1 / 4;
+  grid-row: 2 / 22;*/
+  min-height: 500px;
+}
+.item-c {
+  /* margin-top: 30px; */
+  grid-area: selectSplitT;
+  /* grid-column: 1 / 4;
+  grid-row: 22 / 26;
+  min-height: 310px; */
+}

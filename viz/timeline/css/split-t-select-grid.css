@@ -22,14 +22,14 @@ body {
 h1 {
   font-weight: 900;
   font-size: 32px;
-  color: silver;
+  color: white;
   pointer-events: none;
   padding: 0px;
 }
 h4 {
   font-weight: 900;
   font-size: 28px;
-  color: silver;
+  color: white;
   pointer-events: none;
   padding: 0px;
   margin-top: 6px;

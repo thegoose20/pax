@@ -19,29 +19,20 @@ body {
 h1 {
   font-weight: 900;
   font-size: 20px;
-  color: silver;
+  color: white;
   pointer-events: none;
-  padding: 0px;
+  padding-left: 10px;
 }
 h4 {
   font-weight: 900;
   font-size: 24px;
-  color: silver;
+  color: white;
   pointer-events: none;
-  padding: 0px;
-  margin-top: 6px;
+  padding-left: 10px;
+  padding-top: 10px;
+  margin-top: 0px;
 }
-/* a.nav {
-  font-family: 'M PLUS Rounded 1c', sans-serif;
-  font-weight:400;
-  font-size: 12px;
-  margin: 8px;
-  cursor: pointer;
-  color: silver;
-}
-a:hover{
-  color: "#ffffff";
-} */
+
 iframe {
   border: none;
 }

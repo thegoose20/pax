@@ -1,5 +1,5 @@
 /*
-Updates left vertical timelines when the webpage is reloaded or a 
+Updates left vertical timelines when the webpage is reloaded or a
 country/entity is selected from the dropdown list
 */
 

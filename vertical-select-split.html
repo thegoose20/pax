@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <!-- for responsive web design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Comparison Visualization Filters</title>
+
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c:400,700,900" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/select-style.css">
+    <script type="text/javascript" src="viz/timeline/js/d3.v4.js"></script>
+    <script type="text/javascript" src="viz/timeline/js/vert-select-split.js"></script>
+    <script type="text/javascript" src="viz/timeline/js/splitVertAgtInfo.js"></script>
+  </head>
+  <body>
+
+        <div class="selecter">
+          <p>Display agreements that address:</p>
+          <br/>
+          <div class="codeFilterRadios">
+            <input type="radio" id="allSplitV" name="filterRule" value="all" checked="checked">
+            <label for="all">ALL</label>
+            <input type="radio" id="anySplitV" name="filterRule" value="any">
+            <label for="any">ANY</label>&nbsp;&nbsp;<p>code selections</p>
+            <br/>
+          </div>
+          <p id="filters">
+            <div id="dropdown" class="dropdown">
+              <button class="dropbtn" id="CodeDropBtn">Select Codes</button>
+              <div id="CodeDropdown" class="CodeContent" onclick="callSplitVertFilterFunction()">
+                &nbsp;<a href="#" id="SelectAllCodesSplitV">Select All</a>
+                &nbsp;&nbsp;
+                <a href="#" id="DeselectAllCodesSplitV">Deselect All</a>
+                <br/>
+                  <div id="CodesSplitV">
+                    <input type="checkbox" id="paxHrFraSplitV" name="filterSplitV" value=1>
+                    <label for="HrFra">Human Rights Framework</label>
+                    <br/>
+
+                    <!-- <input type="checkbox" id="paxHrGenSplitV" name="filterSplitV" value=1>
+                    <label for="HrGen">Human Rights/Rule of Law</label>
+                    <br/> -->
+
+                    <input type="checkbox" id="paxPolSplitV" name="filterSplitV" value=1>
+                    <label for="Pol">Political Institutions</label>
+                    <br/>
+
+                    <input type="checkbox" id="paxEpsSplitV" name="filterSplitV" value=1>
+                    <label for="Eps">Power Sharing: Economic</label>
+                    <br/>
+
+                    <input type="checkbox" id="paxMpsSplitV" name="filterSplitV" value=1>
+                    <label for="Mps">Power Sharing: Military</label>
+                    <br/>
+
+                    <input type="checkbox" id="paxPolpsSplitV" name="filterSplitV" value=1>
+                    <label for="Polps">Power Sharing: Political</label>
+                    <br/>
+
+                    <input type="checkbox" id="paxTerpsSplitV" name="filterSplitV" value=1>
+                    <label for="Terps">Power Sharing: Territorial</label>
+                    <br/>
+
+                    <input type="checkbox" id="paxTjMechSplitV" name="filterSplitV" value=1>
+                    <label for="TjMech">Transitional Justice Past Mechanism</label>
+                    <br/>
+
+                    <input type="checkbox" id="paxGeWomSplitV" name="filterSplitV" value=1>
+                    <label for="GeWom">Women, Girls and Gender</label>
+                  </div>
+            </div>
+          </div>
+          </p>
+          <br/>
+          <!-- <label for="codeSelections"><b>Selected Codes:</b></label> -->
+          <div id="codeSelections">
+            <p id="selectionsCode">None selected</p>
+          </div>
+          <br/><br/>
+
+          <div id="legend">
+            <p>Agreement Stage Legend<p>
+            <table>
+              <tr>
+                <td id="Cea" class="color">&nbsp;&nbsp;&nbsp;</td>
+                <td>Ceasefire/related</td>
+              </tr>
+              <tr>
+                <td id="Pre" class="color">&nbsp;&nbsp;&nbsp;</td>
+                <td>Prenegotiation</td>
+              </tr>
+              <tr>
+                <td id="SubPar" class="color">&nbsp;&nbsp;&nbsp;</td>
+                <td>Framework-substantive, partial</td>
+              </tr>
+              <tr>
+                <td id="SubComp" class="color">&nbsp;&nbsp;&nbsp;</td>
+                <td>Framework-substantive, comprehensive</td>
+              <tr>
+              <tr>
+                <td id="FrCons" class="color">&nbsp;&nbsp;&nbsp;</td>
+                <td>Constitution</td>
+              </tr>
+              <tr>
+                <td id="Imp" class="color">&nbsp;&nbsp;&nbsp;</td>
+                <td>Implementation</td>
+              </tr>
+              <tr>
+                <td id="Ren" class="color">&nbsp;&nbsp;&nbsp;</td>
+                <td>Renewal</td>
+              </tr>
+              <tr>
+                <td id="Other" class="color">&nbsp;&nbsp;&nbsp;</td>
+                <td>Other</td>
+              </tr>
+            </table>
+          </div>
+
+          <br/>
+
+          <label for="agtInfoSplitV"><b>Agreement Details:</b></label><br/>
+          <div id="agtSplitV">
+           <script type="text/javascript" src="js/agtInfoV-split.js"></script>
+          </div>
+
+       </div> <!-- end of selecter div -->
+
+  </body>
+
+</html>

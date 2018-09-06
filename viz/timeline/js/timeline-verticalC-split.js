@@ -1,55 +1,55 @@
 /*
-Left Vertical Timeline
+Right SplitVertical Timeline
 */
 
-// Code filter values
-var paxHrFra = window.localStorage.setItem("paxHrFraV",0); // Human rights framework
-// var paxHrFra = window.localStorage.setItem("paxHrFraV",0); // Human rights/Rule of law
-var paxMps = window.localStorage.setItem("paxPolV",0); // Military power sharing
-var paxEps = window.localStorage.setItem("paxEpsV",0); // Economic power sharing
-var paxTerps = window.localStorage.setItem("paxMpsV",0); // Territorial power sharing
-var paxPolps = window.localStorage.setItem("paxPolpsV",0); // Political power sharing
-var paxPol = window.localStorage.setItem("paxTerpsV",0); // Political institutions
-var paxGeWom = window.localStorage.setItem("paxTjMechV",0); // Women, girls and gender
-var paxTjMech = window.localStorage.setItem("paxGeWomV",0); // Transitional justice past mechanism
-// Code filter rules
-var paxANY = window.localStorage.setItem("paxANYV",0); // Selected ANY filter rule
-var paxALL = window.localStorage.setItem("paxALLV",1); // Selected ALL filter rule
+// var paxHrFra = window.localStorage.setItem("paxHrFraSplitV",0); // Human rights framework
+var paxHrFra = window.localStorage.setItem("paxHrFraSplitV",0); // Human rights/Rule of law
+var paxMps = window.localStorage.setItem("paxPolSplitV",0); // Military power sharing
+var paxEps = window.localStorage.setItem("paxEpsSplitV",0); // Economic power sharing
+var paxTerps = window.localStorage.setItem("paxMpsSplitV",0); // Territorial power sharing
+var paxPolps = window.localStorage.setItem("paxPolpsSplitV",0); // Political power sharing
+var paxPol = window.localStorage.setItem("paxTerpsSplitV",0); // Political institutions
+var paxGeWom = window.localStorage.setItem("paxTjMechSplitV",0); // Women, girls and gender
+var paxTjMech = window.localStorage.setItem("paxGeWomSplitV",0); // Transitional justice past mechanism
 
-var selectionV;
+var paxANY = window.localStorage.setItem("paxANYSplitV",0); // Selected ANY filter rule
+var paxALL = window.localStorage.setItem("paxALLSplitV",1); // Selected ALL filter rule
 
+var selectionSplitV;
+
+callFunction();
 d3.select(window).on("resize", callFunction);
 window.addEventListener("storage", toUpdate);
 
 function toUpdate(){
-  if (window.localStorage.getItem("updatePaxVerticalA") == "true"){
+  if (window.localStorage.getItem("updatePaxSplitVerticalC") == "true"){
     return callFunction();
   }
 }
 
 function callFunction() {
-  console.log("Drawing left vertical timeline of yearly grouping");
+  console.log("Drawing right vertical timeline of yearly grouping");
   getFilters();
 
   function getFilters(){
     var locStor = window.localStorage;
     // Filter rule
     // paxRule = locStor.getItem("paxRule");
-    paxANY = locStor.getItem("paxANYV");
-    paxALL = locStor.getItem("paxALLV");
+    paxANY = locStor.getItem("paxANYSplitV");
+    paxALL = locStor.getItem("paxALLSplitV");
     // Filter codes
-    // paxHrFra = locStor.getItem("paxHrFraV");
-    paxHrFra = locStor.getItem("paxHrFraV");
-    paxMps = locStor.getItem("paxMpsV");
-    paxEps = locStor.getItem("paxEpsV");
-    paxTerps = locStor.getItem("paxTerpsV");
-    paxPolps = locStor.getItem("paxPolpsV");
-    paxPol = locStor.getItem("paxPolV");
-    paxGeWom = locStor.getItem("paxGeWomV");
-    paxTjMech = locStor.getItem("paxTjMechV");
+    // paxHrFra = locStor.getItem("paxHrFraSplitV");
+    paxHrFra = locStor.getItem("paxHrFraSplitV");
+    paxMps = locStor.getItem("paxMpsSplitV");
+    paxEps = locStor.getItem("paxEpsSplitV");
+    paxTerps = locStor.getItem("paxTerpsSplitV");
+    paxPolps = locStor.getItem("paxPolpsSplitV");
+    paxPol = locStor.getItem("paxPolSplitV");
+    paxGeWom = locStor.getItem("paxGeWomSplitV");
+    paxTjMech = locStor.getItem("paxTjMechSplitV");
     // Agreement selection
-    selectionV = +window.localStorage.getItem("paxselectionV");
-    // console.log("Vertical Selection: "+selectionV);
+    selectionSplitV = window.localStorage.getItem("paxselectionSplitV");
+    // console.log("SplitVertical Selection: "+selectionSplitV);
   };
 
   // Date parsers & formatters
@@ -90,7 +90,7 @@ function callFunction() {
                                 Mps:+d.Mps, // 1-3 indicating increasing level of detail given about Political Power sharing; 0 if none given
                                 Pol:+d.Pol, // 1-3 indicating increasing level of detail given about political institutions; 0 if none given
                                 HrFra:+d.HrFra, // 1 if topic of human rights/rule of law addressed; 0 if not
-                                // HrFra:+d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
+                                //HrFra:+d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
                                 TjMech:+d.TjMech // 1-3 indicating increasing level of detail given about a body to deal with the past; 0 if none given
                               }; })
       .get(function(error,data){
@@ -100,16 +100,15 @@ function callFunction() {
             svgTest.remove();
           };
 
-          // // Create bar chart tooltip
+          // Create bar chart tooltip
           // var tooltip = d3.select("body").append("div")
           //     .style("opacity","0")
-          //     .style("position","absolute")
-          //     .attr("class","tooltip");
+          //     .style("position","absolute");
 
           // Group agreements by Year (create an array of objects whose key is the year and value is an array of objects (one per agreement))
           var years = d3.nest()
                .key(function(d){ return d.Year; }).sortKeys(d3.ascending)
-               .sortValues(function(a,b){ return d3.descending(a.Dat, b.Dat); })
+               .sortSplitValues(function(a,b){ return d3.descending(a.Dat, b.Dat); })
                .entries(data);
           var yrList = (d3.map(years, function(year){ return year.key; })).keys(); // array of year values
           // console.log(years); // an array of objects
@@ -144,19 +143,17 @@ function callFunction() {
           var y = d3.scaleTime()
                       .domain([minYear,maxYear])  // data space
                       .range([margin.top,(height-margin.bottom)]);  // display space
-          window.localStorage.setItem("paxMinYearV", minYear); // same for all vertical timelines
-          window.localStorage.setItem("paxMaxYearV", maxYear); // same for all vertical timelines
 
-          // Define the full timeline chart SVG element
-          var svg = d3.select("body").select("#chartA").append("svg")
+          // Define the full timeline chart SSplitVG element
+          var svg = d3.select("body").select("#chartC").append("svg")
               .attr("height", height + (margin.top*8) + margin.bottom)
               .attr("width", width + margin.left + margin.right)
-              .attr("class","A");
+              .attr("class","C");
 
           // Define the color scale for agreement stages
           // (Colors from: http://colorbrewer2.org/#type=qualitative&scheme=Set3&n=7)
           var stageColors = ["#8dd3c7", "#ffffb3", "#fdb462", "#b3de69", "#fb8072", "#8c8c8c", "#80b1d3"];
-          var stageValues = ["Pre", "SubPar", "SubComp", "Imp", "Cea", "Other", "FrCons"];
+          var stageSplitValues = ["Pre", "SubPar", "SubComp", "Imp", "Cea", "Other", "FrCons"];
 
           for (year = 0; year < yrList.length; year++){
             var chartGroup = svg.append("g")
@@ -167,50 +164,49 @@ function callFunction() {
                 .data(years[year].values)
               .enter().append("rect")
               .filter(function(d){ return pickAgtCon(d); })
-              .filter(function(d){ return setVertAgtFilters(d); })
+              .filter(function(d){ return setSplitVertAgtFilters(d); })
                 .attr("class","agt")
                 .attr("id",function(d){ return d.AgtId; })
                 .attr("name",function(d){ return d.Agt; })
                 .attr("value",function(d){ return d.Year; })
-                .attr("fill", function(d){ return getStageFill(d, stageValues, stageColors); })//"black")
-                .attr("stroke",function(d){ if (+d.AgtId == +selectionV){ return "#ffffff"; } else { return "#737373"; } })  // same as html background-color
+                .attr("fill", function(d){ return getStageFill(d, stageSplitValues, stageColors); })//"black")
+                .attr("stroke",function(d){ if (+d.AgtId == +selectionSplitV){ return "#ffffff"; } else { return "#737373"; } })  // same as html background-color
                 .attr("stroke-width","1px")
-                .style("opacity", function(d){ if (+d.AgtId == +selectionV){ return "1"; } else { return "0.7"; } })
+                .style("opacity", function(d){ if (+d.AgtId == +selectionSplitV){ return "1"; } else { return "0.7"; } })
                 .attr("x",function(d,i){ return (yWidth+margin.left+((agtWidth)*(i*agtSpacing)))+"px"; })
                 .attr("y", function(d){ return y(parseYear(d.Year)) - (agtHeight/2) + (margin.top*7); })
                 .attr("width", agtWidth+"px")
                 .attr("height", agtHeight+"px");
 
             rects.on("click", function(d) {
-              if (+d.AgtId != +selectionV){
+              if (+d.AgtId != +selectionSplitV){
                 // console.log(this.id); // this.id == d.AgtId
-                window.localStorage.setItem("paxselectionV", d.AgtId);
-                window.localStorage.setItem("updatePaxVerticalB", "true"); // Deselect any selected agreement on middle vertical timeline
-                window.localStorage.setItem("updatePaxVerticalC", "true"); // Deselect any selected agreement on right vertical timeline
-                // console.log(window.localStorage.getItem("paxselectionV"));
+                window.localStorage.setItem("paxselectionSplitV", d.AgtId);
+                // selectionSplitV = window.localStorage.getItem("paxselectionSplitV");
+                window.localStorage.setItem("updatePaxSplitVerticalA", "true"); // Deselect any selected agreement on left vertical timeline
+                window.localStorage.setItem("updatePaxSplitVerticalB", "true"); // Deselect any selected agreement on middle vertical timeline
                 callFunction();
               } else { // if clicked
                 // console.log(this.id);
-                window.localStorage.setItem("paxselectionV", 0);
-                window.localStorage.setItem("updatePaxVerticalB", "true"); // Deselect any selected agreement on middle vertical timeline
-                window.localStorage.setItem("updatePaxVerticalC", "true"); // Deselect any selected agreement on right vertical timeline
+                window.localStorage.setItem("paxselectionSplitV", 0);
+                // selectionSplitV = window.localStorage.getItem("paxselectionSplitV");
+                window.localStorage.setItem("updatePaxSplitVerticalA", "true"); // Deselect any selected agreement on left vertical timeline
+                window.localStorage.setItem("updatePaxSplitVerticalB", "true"); // Deselect any selected agreement on middle vertical timeline
                 callFunction();
               }
             });
 
             rects.on("mouseover",function(d){
                 this.style.opacity = 1;
-                // console.log(d.AgtId);
-                window.localStorage.setItem("paxagtidV", d.AgtId);
+                window.localStorage.setItem("paxagtidSplitV", d.AgtId);
             });
             rects.on("mouseout",function(d) {
-              window.localStorage.setItem("paxagtidV", 0);
-              if (+d.AgtId.id != +selectionV){
+              window.localStorage.setItem("paxagtidSplitV", 0);
+              if (+d.AgtId.id != +selectionSplitV){
                 this.style.opacity = 0.7;
-                this.style.fill = getStageFill(d, stageValues, stageColors);
+                this.style.fill = getStageFill(d, stageSplitValues, stageColors);
                }
             });
-
           }
 
           /*
@@ -220,7 +216,7 @@ function callFunction() {
                       .attr("x","0px")
                       .attr("y", margin.top*2)
                       .attr("class","description")
-                      .text(localStorage.getItem("paxVertConA"));
+                      .text(localStorage.getItem("paxSplitVertConC"));
           // chartGroup.append("text")
           //             .attr("x", "0px")
           //             .attr("y", margin.top*5)
@@ -250,64 +246,60 @@ function callFunction() {
           // }
 
           function pickAgtCon(d){
-            var con = String(localStorage.getItem("paxVertConA"));
+            var con = String(localStorage.getItem("paxSplitVertConC"));
             var agmtCon = String(d.Con);
             if ((agmtCon.includes(con)) || (con.includes(agmtCon))){
              return d;
             }
           }
 
-          function setVertAgtFilters(d){
+          function setSplitVertAgtFilters(d){
             var agmtCodes = [d.GeWom, d.HrFra, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech]; //d.HrFra,
             var codeFilters = [+paxGeWom, +paxHrFra, +paxEps, +paxMps, +paxPol, +paxPolps, +paxTerps, +paxTjMech]; //+paxHrFra,
             var codeFilterCount = codeFilters.length;
             if (paxANY == 1){
-             for (i = 0; i < codeFilterCount; i++){
-               if ((+codeFilters[i] == 1) && (+agmtCodes[i] > 0)){
-                 return d;
-               }
-             }
+              for (i = 0; i < codeFilterCount; i++){
+                if ((+codeFilters[i] == 1) && (+agmtCodes[i] > 0)){
+                  return d;
+                }
+              }
             } else { // if paxALL == 1
-             var mismatch = false;
-             for (j = 0; j < codeFilterCount; j++){
-               if ((+codeFilters[j] == 1) && (+agmtCodes[j] == 0)){
-                 mismatch = true;
-               }
-             }
-             if (!mismatch){
-               return d;
-             }
+              var mismatch = false;
+              for (j = 0; j < codeFilterCount; j++){
+                if ((+codeFilters[j] == 1) && (+agmtCodes[j] == 0)){
+                  mismatch = true;
+                }
+              }
+              if (!mismatch){
+                return d;
+              }
             }
           }
 
-          function getStageFill(d, stageValues, stageColors){
+          function getStageFill(d, stageSplitValues, stageColors){
             // d.StageSub value to color: "FrCons"
             // d.Stage possible values to color: "Pre", "SubPar", "SubComp", "Imp", "Cea", "Other"
-            if (+d.AgtId == +selectionV){
+            if (d.AgtId == selectionSplitV){
               return "#ffffff";
-            } else if (d.StageSub == stageValues[6]){ //"FrCons"
-             return stageColors[6];
+            } else if (d.StageSub == stageSplitValues[6]){ //"FrCons"
+              return stageColors[6];
             } else {
-             var stageI = stageValues.indexOf(d.Stage);
-             if (stageI != -1){
-               return stageColors[stageI];
-             } else {
-               return "#bebada";//"black";
-             }
+              var stageI = stageSplitValues.indexOf(d.Stage);
+              if (stageI != -1){
+                return stageColors[stageI];
+              } else {
+                return "#bebada";
+              }
             }
           }
 
       }) // end of .get(error,data)
 
-      window.localStorage.setItem("updatePaxVerticalA", "false");
+      window.localStorage.setItem("updatePaxSplitVerticalC", "false");
 
-      /*
-      EXPORT PNG
-      from https://github.com/exupero/saveSvgAsPng
-      */
-      d3.select("#exportV").on("click", function(){
-        var title = "PA-X_VerticalTimeline";
-        var con = String(localStorage.getItem("paxVertConA"));
+      d3.select("#exportSplitV").on("click", function(){
+        var title = "PA-X_SplitVerticalTimeline";
+        var con = String(localStorage.getItem("paxSplitVertConC"));
         var codeFilters = [+paxHrFra, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
         var codeNames = ["HrFra", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
         var codes = "";

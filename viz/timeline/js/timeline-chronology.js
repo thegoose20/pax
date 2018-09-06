@@ -228,7 +228,7 @@ function callFunction() {
                 window.localStorage.setItem("updatePaxMap", "true");
                 callFunction();
 
-              } else { // if clicked
+              } else { // if agreement is clicked, highlight the agreement on map & timeline
                 clicked = false;
                 this.style.opacity = 0.5;
                 window.localStorage.setItem("paxselection", 0);
@@ -237,7 +237,7 @@ function callFunction() {
               }
             });
 
-            selectedRects.on("mouseover",function(d){
+            selectedRects.on("mouseover",function(d){ // show details of agreements over which a user hovers
               if (!clicked){
                 this.style.fill = "#ffffff";
                 this.style.stroke = "#ffffff";
@@ -271,12 +271,15 @@ function callFunction() {
               }
             }
 
-            // Draw agreements with selected codes & countries/entities in black,
-            // those without selected codes & countries/entities in gray
+            // Draw agreements with selected codes in black, and draw those
+            // without selected codes in gray
             function setAgtColors(d){
               var agmtCodes = [d.HrFra, d.Pol, d.Eps, d.Mps, d.Polps, d.Terps, d.TjMech, d.GeWom, ]; //d.HrFra,
               var codeFilters = [+paxHrFra, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra,
               var codeFilterCount = codeFilters.length;
+              // if "any" selected, draw agreements with at least one of the
+              // selected codes in black, and draw those with none of the
+              // selected codes in gray
               if (paxANY == 1){
                 pass = false;
                 var codeValueTotal = 0;
@@ -290,7 +293,8 @@ function callFunction() {
                 }
                 if ((codeValueTotal > 0) && (pass)){
                   if (+d.AgtId == +selection){
-                    return ["white", "selected"];   // if an agreement is selected on the map
+                     // if an agreement is selected on the map, highlight it
+                    return ["white", "selected"];
                   } else {
                     return ["black", "selected"];
                   }
@@ -301,6 +305,9 @@ function callFunction() {
                 }
               }
               else { // if paxALL == 1
+                // if "all" selected, draw agreements with every one of the
+                // selected codes in black, and draw those with none or only
+                // a fraction of the selected codes in gray
                 var codeValueTotal = 0;
                 var mismatch = false;
                 for (j = 0; j < codeFilterCount; j++){
@@ -325,7 +332,7 @@ function callFunction() {
                   }
                   // return getAgtCons(d);
                 } else {
-                  window.localStorage.setItem("paxselection","");
+                  window.localStorage.setItem("paxselection","");  // reset storage values so user can make new selection
                   return ["#595959", "unselected"];
                 }
               }
@@ -357,17 +364,18 @@ function callFunction() {
             //   }
             // }
 
-            // Only visualize agreements with the selected countries/entities
+            // Visualize agreements with the selected countries/entities:
             function setAgtCons(d){
               var agmtCon = String(d.Con);
-              // When only 1 country/entity is selected, display the same
+              // when only 1 country/entity is selected, display the same
               // agreements for "any" and "all" radio button selections...
               if (paxCons.length == 1){
                 if ((agmtCon.includes(paxCons[0])) || (paxCons[0].includes(agmtCon))){
                   return d;
                 }
               }
-              // otherwise...
+              // otherwise, if "any" selected, display all agreements with at
+              // least one of the selected countries/entities...
               if (paxConRule == "any"){
                 var allCons = JSON.parse(localStorage.getItem("paxConsAll"));
                 if (paxCons.length == allCons.length){
@@ -380,6 +388,8 @@ function callFunction() {
                   }
                 }
               }
+              // and if "all" selected, display only agreements with all of the
+              // selected countries/entities
               if (paxConRule == "all") {
                 var mismatch = false;
                 for (j = 0; j < paxCons.length; j++){
@@ -393,7 +403,7 @@ function callFunction() {
               }
             }
 
-           // Draw axes
+           // Draw x axis
            var xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%e %b %Y")).tickPadding([5]);
 
            var gX = chartGroup.append("g")
@@ -409,7 +419,7 @@ function callFunction() {
       console.log("horizontal complete.");
 
       /*
-      EXPORT PNG
+      EXPORT PNG OF TIMELINE AS CURRENTLY FILTERED
       from https://github.com/exupero/saveSvgAsPng
       */
       d3.select("#export").on("click", function(){
