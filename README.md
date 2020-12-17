@@ -1,7 +1,7 @@
 # Visualizing Peace [pax]
+[View Platform](https://thegoose20.github.io/pax/)
 
-
-A Data Visualization Project for the [Political Settlements Research Programme](http://www.politicalsettlements.org/): thegoose20.github.io/pax/
+A Data Visualization Project for the [Political Settlements Research Programme](http://www.politicalsettlements.org/)
 
 By Lucy Havens (Centre for Design Informatics, University of Edinburgh) and Mengting Bao (School of Informatics, University of Edinburgh)
 
