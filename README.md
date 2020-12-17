@@ -1,13 +1,13 @@
 # Visualizing Peace [pax]
 
 
-A Data Visualization Project for the Political Settlements Research Programme (http://www.politicalsettlements.org/)
+A Data Visualization Project for the [Political Settlements Research Programme](http://www.politicalsettlements.org/): thegoose20.github.io/pax/
 
 By Lucy Havens (Centre for Design Informatics, University of Edinburgh) and Mengting Bao (School of Informatics, University of Edinburgh)
 
-Data Source: Peace Agreements Database (PA-X) - www.peaceagreements.org/search
+Data Source: [Peace Agreements Database (PA-X)](www.peaceagreements.org/search)
 
-Documentation: https://paxviz.wordpress.com/
+Documentation: [PaxViz Blog](https://paxviz.wordpress.com/)
 
 ***
 
